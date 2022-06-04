@@ -1,0 +1,99 @@
+:root {
+  --primary-purple: #aa69ff;
+  --primary-blue: #2350a0;
+  --primary-black: #000032;
+  --primary-grey: rgba(146, 146, 149, 0.2);
+  --succeed: rgb(58, 184, 85);
+  --error: rgba(255, 38, 103);
+}
+.bgc-nav {
+  background-color: rgba(0, 0, 50, 0.4);
+}
+.bgc-purple {
+  background-color: var(--primary-purple);
+}
+.bgc-blue {
+  background-color: var(--primary-blue);
+}
+.bgc-black {
+  background-color: var(--primary-black);
+}
+.bgc-white {
+  background-color: #fff;
+}
+.bgc-trans {
+  background-color: transparent;
+}
+.bgc-grey {
+  background-color: rgba(146, 146, 149, 0.2);
+}
+.bgc-grey-light {
+  background-color: #f1efef;
+}
+.bgc-grey1 {
+  background-color: #c1c2c4;
+}
+.bgc-grey2 {
+  background-color: #d0d1d3;
+}
+.bgc-grey3 {
+  background-color: #e0e1e1;
+}
+.bgc-grey4 {
+  background-color: #eff0f0;
+}
+.bgc-grey5 {
+  background-color: #f7f7f8;
+}
+.bgc-gradient1 {
+  background: linear-gradient(to right bottom, var(--primary-black), var(--primary-blue));
+}
+.bgc-gradient2 {
+  background: linear-gradient(to bottom, var(--primary-purple), var(--primary-black));
+}
+.bgc-gradient3 {
+  background: linear-gradient(to bottom, var(--primary-black), var(--primary-blue));
+}
+.bgc-gradient4 {
+  background: linear-gradient(90deg, var(--primary-black) 35%, #ffffff 35%);
+}
+.txt-black {
+  color: var(--primary-black);
+}
+.txt-grey {
+  color: #929295;
+}
+.txt-purple {
+  color: var(--primary-purple);
+}
+.txt-succeed {
+  color: var(--succeed);
+}
+.txt-error {
+  color: var(--error);
+}
+.txt-purple-hover {
+  color: var(--primary-purple);
+}
+.txt-purple-hover:hover {
+  color: var(--primary-purple);
+  text-decoration: underline;
+}
+.txt-black-hover {
+  color: var(--primary-black);
+}
+.txt-black-hover:hover {
+  color: var(--primary-black);
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .bgc-white-md {
+    background-color: #fff;
+  }
+  .bgc-grey-md {
+    background-color: rgba(146, 146, 149, 0.2);
+  }
+  .txt-black-md {
+    color: var(--primary-black);
+  }
+}

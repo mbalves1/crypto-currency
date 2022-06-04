@@ -1,0 +1,309 @@
+@font-face {
+  font-family: "PlayfairDisplayRegular";
+  src: url("/fonts/PlayfairDisplay/PlayfairDisplay-Regular.eot");
+  src: url("/fonts/PlayfairDisplay/PlayfairDisplay-Regular.woff") format("woff"),
+    url("/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "PlayfairDisplayMedium";
+  src: url("/fonts/PlayfairDisplay/PlayfairDisplay-Medium.eot");
+  src: url("/fonts/PlayfairDisplay/PlayfairDisplay-Medium.woff") format("woff"),
+    url("/fonts/PlayfairDisplay/PlayfairDisplay-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "PlayfairDisplayBold";
+  src: url("/fonts/PlayfairDisplay/PlayfairDisplay-Bold.eot");
+  src: url("/fonts/PlayfairDisplay/PlayfairDisplay-Bold.woff") format("woff"),
+    url("/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "LibreFranklinMedium";
+  src: url("/fonts/LibreFranklin/LibreFranklin-Medium.eot");
+  src: url("/fonts/LibreFranklin/LibreFranklin-Medium.woff") format("woff"),
+    url("/fonts/LibreFranklin/LibreFranklin-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("/fonts/Roboto/Roboto-Regular.eot");
+  src: url("/fonts/Roboto/Roboto-Regular.woff2") format("woff2"),
+    url("/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "RobotoLight";
+  src: url("/fonts/Roboto/Roboto-Light.eot");
+  src: url("/fonts/Roboto/Roboto-Light.woff2") format("woff2"),
+    url("/fonts/Roboto/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "RobotoMedium";
+  src: url("/fonts/Roboto/Roboto-Medium.eot");
+  src: url("/fonts/Roboto/Roboto-Medium.woff2") format("woff2"),
+    url("/fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "RobotoBold";
+  src: url("/fonts/Roboto/Roboto-Bold.eot");
+  src: url("/fonts/Roboto/Roboto-Bold.woff2") format("woff2"),
+    url("/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+h1 {
+  font-family: "PlayfairDisplayBold";
+  font-size: 75px;
+  line-height: 90px;
+}
+h2 {
+  font-family: "PlayfairDisplayRegular";
+  font-size: 50px;
+  line-height: 76px;
+}
+h3 {
+  font-family: "RobotoBold";
+  font-size: 32px;
+  line-height: 76px;
+}
+h4 {
+  font-family: "PlayfairDisplayBold";
+}
+h5 {
+  font-family: "RobotoRegular";
+}
+h6 {
+  font-family: "RobotoMedium";
+  font-size: 19px;
+  line-height: 29px;
+}
+p {
+  font-family: "RobotoRegular";
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+small {
+  font-family: "RobotoRegular";
+  font-size: 12px;
+}
+.lf-medium {
+  font-family: "LibreFranklinMedium";
+  font-size: 10px;
+}
+.lh-20 {
+  line-height: 20px;
+}
+.lh-22 {
+  line-height: 22px;
+}
+.lh-26 {
+  line-height: 26px;
+}
+.lh-27 {
+  line-height: 27px;
+}
+.lh-29 {
+  line-height: 29px;
+}
+.lh-38 {
+  line-height: 38px;
+}
+.lh-44 {
+  line-height: 44px;
+}
+.lh-47 {
+  line-height: 47px;
+}
+.lh-50 {
+  line-height: 50px;
+}
+.lh-55 {
+  line-height: 55px;
+}
+.lh-57 {
+  line-height: 57px;
+}
+.lh-60 {
+  line-height: 60px;
+}
+.lh-66 {
+  line-height: 66px;
+}
+.lh-70 {
+  line-height: 70px;
+}
+.lh-80 {
+  line-height: 80px;
+}
+.lh-88 {
+  line-height: 88px;
+}
+.lh-90 {
+  line-height: 90px;
+}
+.ls-1{
+  letter-spacing: 1px;
+}
+.text-subtitle {
+  font-family: "PlayfairDisplayRegular";
+  font-size: 32px;
+  line-height: 42px;
+}
+.text-small {
+  font-family: "RobotoRegular";
+  font-size: 12px;
+}
+.text-medium {
+  font-family: "RobotoMedium";
+  font-size: 19px;
+}
+.text-large {
+  font-family: "RobotoRegular";
+  font-size: 22px;
+}
+.text-extra-large {
+  font-family: "PlayfairDisplayRegular";
+  font-size: 75px;
+  line-height: 82px;
+}
+.roboto-light {
+  font-family: "RobotoLight";
+}
+.roboto-regular {
+  font-family: "RobotoRegular";
+}
+.roboto-medium {
+  font-family: "RobotoMedium";
+}
+.roboto-bold {
+  font-family: "RobotoBold";
+}
+.pf-regular {
+  font-family: "PlayfairDisplayRegular";
+}
+.pf-medium {
+  font-family: "PlayfairDisplayMedium";
+}
+.pf-bold {
+  font-family: "PlayfairDisplayBold";
+}
+.fs-10 {
+  font-size: 10px;
+}
+.fs-12 {
+  font-size: 12px;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-18 {
+  font-size: 18px;
+}
+.fs-22 {
+  font-size: 22px;
+}
+.fs-32 {
+  font-size: 32px;
+}
+.fs-34 {
+  font-size: 34px;
+}
+.fs-36 {
+  font-size: 36px;
+}
+.fs-38 {
+  font-size: 38px;
+}
+.fs-40 {
+  font-size: 40px;
+}
+.fs-50 {
+  font-size: 50px;
+}
+.fs-75 {
+  font-size: 75px;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.underline {
+  text-decoration: underline;
+}
+.break-word{
+  word-break: break-all;
+}
+@media (max-width: 992px) {
+  .text-extra-large {
+    font-size: 48px;
+  }
+  h1 {
+    font-size: 60px;
+  }
+  h2 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 40px;
+    line-height: 60px;
+  }
+  h3 {
+    font-size: 24px;
+    line-height: 40px;
+  }
+  p {
+    font-size: 16px;
+  }
+  .text-large {
+    font-size: 16px;
+  }
+  .text-medium {
+    font-size: 18px;
+  }
+  .lh-50-md {
+    line-height: 50px;
+  }
+  .lh-40-md {
+    line-height: 40px;
+  }
+}
+@media (max-width: 576px) {
+  h2 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+  small {
+    font-size: 10px;
+    font-weight: 100;
+  }
+  .text-extra-large {
+    font-size: 48px;
+  }
+  .fs-24-sm {
+    font-size: 24px;
+  }
+  .fs-20-sm {
+    font-size: 20px;
+  }
+  .fs-18-sm {
+    font-size: 18px;
+  }
+  .fs-16-sm {
+    font-size: 16px;
+  }
+}
+@media (max-width: 420px) {
+  .text-extra-large {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+}

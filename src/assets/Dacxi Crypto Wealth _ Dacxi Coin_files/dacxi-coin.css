@@ -1,0 +1,21 @@
+.dacxi-coin.banner {
+  background-image: url("/assets/images/about/dacxi-coin/banner.png");
+}
+.dacxi-coin.banner .vector.circle {
+  left: -8%;
+  bottom: 10%;
+}
+.dacxi-coin.banner h1 {
+  max-width: 840px;
+}
+.dacxi-coin.banner p {
+  max-width: 800px;
+}
+.dacxi-coin.coin .right .icon{
+  min-width: 60px;
+}
+@media (max-width: 768px) {
+  .dacxi-coin.coin .right {
+    background-color: #fff;
+  }
+}

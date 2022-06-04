@@ -1,0 +1,81 @@
+.button {
+  border: none;
+  background-color: transparent;
+  padding: 8px 20px;
+}
+.button-round {
+  border-radius: 30px;
+  font-weight: 600;
+}
+.button-solid-purple {
+  color: #fff;
+  border: 2px solid var(--primary-purple);
+  background-color: var(--primary-purple);
+}
+.button-solid-purple:hover {
+  background-color: #fff;
+  color: var(--primary-purple);
+}
+.button-solid-white{
+  color:var(--primary-purple);
+  background-color:#fff;
+  border: 2px solid #fff;
+}
+.button-solid-white:hover {
+  color: #fff;
+  background-color: transparent;
+}
+.button-hollow-white {
+  color: #fff;
+  border: 2px solid #fff;
+  background-color: transparent;
+}
+.button-hollow-white:hover {
+  color: var(--primary-purple);
+  background-color: #fff;
+}
+.button-hollow-black {
+  color: var(--primary-black);
+  border: 2px solid var(--primary-black);
+}
+.button-hollow-black:hover {
+  background-color: var(--primary-black);
+  color: #fff;
+}
+.button-tag{
+  color: var(--primary-black);
+  border: 2px solid var(--primary-grey);
+}
+.button-tag:hover{
+  color:#fff;
+  background-color: var(--primary-black);
+}
+.btn-w130 {
+  width: 130px;
+}
+.btn-w150 {
+  width: 150px;
+}
+.btn-w170 {
+  width: 170px;
+}
+.btn-w200 {
+  width: 200px;
+}
+.btn-w250 {
+  width: 250px;
+}
+.btn-p10 {
+  padding: 10px;
+}
+.py10-px30 {
+  padding: 10px 30px;
+}
+@media (max-width: 768px) {
+  .btn-w100-md{
+    width: 100%;
+  }
+  .btn-w75-md{
+    width: 75%;
+  }
+}

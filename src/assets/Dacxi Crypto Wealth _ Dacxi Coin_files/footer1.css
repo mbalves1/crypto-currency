@@ -1,0 +1,94 @@
+footer {
+  padding: 5rem 0 4rem;
+  color: #fff;
+  min-height: 650px;
+}
+footer .wrap {
+  height: auto;
+}
+footer .container {
+  padding: 0 4rem;
+}
+footer a {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+footer .links {
+  margin-bottom: 1rem;
+}
+footer .links .logo {
+  margin-bottom: 5rem;
+}
+footer .link-col {
+  min-width: 220px;
+}
+footer .disclaimer {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+footer .disclaimer small {
+  display: block;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+footer .terms {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+footer .terms a {
+  margin-right: 1rem;
+  opacity: 0.5;
+}
+footer hr {
+  opacity: 1;
+}
+footer .bottom small {
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+  footer .container {
+    padding: 0;
+  }
+  footer .links img {
+    margin-bottom: 2rem;
+  }
+  footer .links .logo {
+    margin-bottom: 2rem;
+  }
+  footer .links a {
+    font-size: 12px;
+  }
+  footer .links button {
+    width: 100%;
+    margin: 0 auto;
+  }
+  footer .terms {
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  footer .terms a {
+    margin-bottom: 0.3rem;
+  }
+  footer .bottom {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  footer .disclaimer {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}
+.w-200{
+  width: 228px;
+  height: 150px;
+}
