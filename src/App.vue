@@ -9,7 +9,10 @@ export default defineComponent({
 })
 </script>
 <style>
-
+body {
+  background: var(--bs-light-gray);
+}
+/* extraido do site */
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -23,6 +26,7 @@ export default defineComponent({
   --bs-cyan: #0dcaf0;
   --bs-white: #fff;
   --bs-gray: #6c757d;
+  --bs-light-gray:#e3e3e3;
   --bs-gray-dark: #343a40;
   --bs-primary: #0d6efd;
   --bs-secondary: #6c757d;
