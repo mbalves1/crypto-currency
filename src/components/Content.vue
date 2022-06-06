@@ -14,11 +14,12 @@
             <span style="text-transform: capitalize"> {{index}}</span>
           </div>
         </q-card-section>
+        <q-separator ></q-separator>
 
-        <q-card-section class="q-pt-none">
-          U$ {{i.usd}}
-          {{i.usd_market_cap}}
-          {{i.usd_24h_vol}}
+        <q-card-section class="q-pt-sm">
+          Price - U$ {{format(i.usd)}}<br />
+          Mkt Cap - U${{format(i.usd_market_cap)}}<br />
+          Vol in 24H - U${{format(i.usd_24h_vol)}}<br />
         </q-card-section>
       </q-card>
     </div>
@@ -34,6 +35,7 @@ export default {
   created () {
     this.getCoin()
     this.getHistory()
+    this.timer = setInterval(this.getCoin, 20000)
   },
   data () {
     return {
@@ -41,25 +43,29 @@ export default {
       coins: {
         bitcoin: {},
         ethereum: {},
-        cosmos: {}
+        cosmos: {},
+        timer: ''
       }
     }
   },
   computed: {
     ...mapState('Coin', {
       coinsObject: 'coin'
-    }),
-    format (value) {
-      return value.toString().toFixed(2)
-    }
+    })
   },
   methods: {
     ...mapMutations('Coin', {
       setCoin: 'SET_COIN'
     }),
+    format (value) {
+      console.log(new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(value))
+      return new Intl.NumberFormat('en-IN').format(value)
+    },
     getCoin () {
+      console.log('getcoun')
       axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cdacxi%2Ccosmos%2Cterra-luna&vs_currencies=usd&include_24hr_vol=true&include_market_cap=true')
         .then((data) => {
+          console.log('dt>>>>>>', data)
           this.coins = data.data
           this.setCoin(data.data)
         })
@@ -75,19 +81,36 @@ export default {
         .catch((err) => {
           console.log('err', err)
         })
+    },
+    cancelAutoUpdate () {
+      clearInterval(this.timer)
     }
+  },
+  beforeUnmount () {
+    console.log('chamoubefre')
+    this.cancelAutoUpdate()
   }
 }
 </script>
 <style lang="scss" scoped>
 .boxx {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   &--cards {
     display: grid;
-    width: 200px;
+    width: 290px;
     gap: 20px;
+  }
+}
+
+@media (max-width: 631px) {
+  .boxx {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 </style>

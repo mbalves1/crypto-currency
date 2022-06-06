@@ -3,123 +3,38 @@
     <Header></Header>
     <div class="slider">
       <div class="slide-track">
-        <div class="slide">
-          <div>
-            <img src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579" />
-            Bitcoin
-            <!-- {{this.coin.bitcoin.usd || 0}} -->
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880" />
-            Ethereum
-            <!-- {{this.coin.ethereum.usd || 0}} -->
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 10px" src="https://assets.coingecko.com/coins/images/4466/small/dacxi.png?1639042471" />
-            <!-- {{this.coin.dacxi.usd || 0}} -->
-            Dacxi
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 30px" src="https://assets.coingecko.com/coins/images/1481/small/cosmos_hub.png?1555657960" />
-            <!-- {{this.coin.cosmos.usd || 0}} -->
-            Cosmos
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 30px" src="https://assets.coingecko.com/coins/images/22951/small/LUNA_wh_small.png?1644226405" />
-            <!-- {{this.coin|| 0}} -->
-            Luna
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579" />
-            <!-- {{this.coin.bitcoin.usd || 0}} -->
-            Bitcoin
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880" />
-            <!-- {{this.coin.ethereum.usd || 0}} -->
-            Ethereum
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 10px" src="https://assets.coingecko.com/coins/images/4466/small/dacxi.png?1639042471" />
-            <!-- {{this.coin.dacxi.usd || 0}} -->
-            Dacxi
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 30px" src="https://assets.coingecko.com/coins/images/1481/small/cosmos_hub.png?1555657960" />
-            <!-- {{this.coin.cosmos.usd || 0}} -->
-            Cosmos
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 30px" src="https://assets.coingecko.com/coins/images/22951/small/LUNA_wh_small.png?1644226405" />
-            <!-- {{this.coin|| 0}} -->
-            Luna
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880" />
-            <!-- {{this.coin.ethereum.usd || 0}} -->
-            Ethereum
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 10px" src="https://assets.coingecko.com/coins/images/4466/small/dacxi.png?1639042471" />
-            <!-- {{this.coin.dacxi.usd || 0}} -->
-            Dacxi
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 30px" src="https://assets.coingecko.com/coins/images/1481/small/cosmos_hub.png?1555657960" />
-            <!-- {{this.coin.cosmos.usd || 0}} -->
-            Cosmos
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <img style="width: 30px" src="https://assets.coingecko.com/coins/images/22951/small/LUNA_wh_small.png?1644226405" />
-            <!-- {{this.coin|| 0}} -->
-            Luna
+        <div class="slide" v-for="(i, index) in coin" :key="i">
+          <div class="q-pa-md">
+            {{index}}
           </div>
         </div>
       </div>
     </div>
     <!-- <q-page class="flex flex-center"> -->
-    <Content></Content>
-
+    <div class="container" style="height: 100vh; overflow-y: scroll">
+      <Content></Content>
+      <Filter></Filter>
+    </div>
     <!-- </q-page> -->
 </div>
 </template>
 
 <script>
-import Header from 'src/components/Header.vue'
 import { defineComponent } from 'vue'
 
+// Componnet
+import Header from 'src/components/Header.vue'
 import Content from 'src/components/Content.vue'
+import Filter from 'src/components/Filter.vue'
+
+// mixins
 import get from 'src/mixins/get.js'
+
+// Lib
 import { mapState } from 'vuex'
 
 export default defineComponent({
-  components: { Header, Content },
+  components: { Header, Content, Filter },
   mixins: [get],
   name: 'PageIndex',
   created () {
@@ -134,7 +49,12 @@ export default defineComponent({
 })
 </script>
 <style>
-
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 350px;
+}
 /* body {
   align-items: center;
   background: #e3e3e3;
