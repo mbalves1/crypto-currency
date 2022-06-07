@@ -1,19 +1,44 @@
 <template>
   <div>
-    <Header></Header>
+    <Header @open="drawer"></Header>
     <div class="slider">
-      <div class="slide-track">
-        <div class="slide" v-for="(i, index) in coin" :key="i">
+      <div class="slide-track" style="z-index: 10">
+        <div class="slide" v-for="(i, index) in coins" :key="i">
           <div class="q-pa-md">
             {{index}}
+            {{i.usd}}
           </div>
         </div>
       </div>
     </div>
+    <q-drawer side="right" v-model="openDrawer">
+      <div class="q-pa-md" style="max-width: 350px">
+        <q-list separator>
+          <q-item clickable v-ripple>
+            <v-text>Dacxi</v-text>
+          </q-item>
+
+          <q-item clickable v-ripple @click="setCurrentContent">
+            <q-item-section>
+              <q-item-label>Price</q-item-label>
+              <q-item-label caption>Follow the price in real time</q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple @click="setCurrentFilter">
+            <q-item-section>
+              <q-item-label>Historic</q-item-label>
+              <q-item-label caption>Make history of the main crypto</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+    </q-drawer>
     <!-- <q-page class="flex flex-center"> -->
-    <div class="container" style="height: 100vh; overflow-y: scroll">
-      <Content></Content>
-      <Filter></Filter>
+    <div class="container" style="height: 100vh">
+      <component :is="routeComponent"></component>
+      <!-- <Content></Content>
+      <Filter></Filter> -->
     </div>
     <!-- </q-page> -->
 </div>
@@ -37,14 +62,32 @@ export default defineComponent({
   components: { Header, Content, Filter },
   mixins: [get],
   name: 'PageIndex',
+  data () {
+    return {
+      openDrawer: false,
+      routeComponent: 'Content'
+    }
+  },
   created () {
     this.getCoin()
-    console.log('get coin', this.coin)
+    console.log('get cois', this.coin)
   },
   computed: {
     ...mapState('Coin', {
-      coin: 'coin'
+      coin: 'coin',
+      current: 'current'
     })
+  },
+  methods: {
+    setCurrentContent () {
+      this.routeComponent = 'Content'
+    },
+    setCurrentFilter () {
+      this.routeComponent = 'Filter'
+    },
+    drawer () {
+      this.openDrawer = !this.openDrawer
+    }
   }
 })
 </script>

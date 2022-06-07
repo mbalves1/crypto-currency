@@ -1,7 +1,7 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 
-import Coin from './Coin'
+import Coin from './Coin/index'
 
 /*
  * If not building with SSR mode, you can
@@ -14,6 +14,7 @@ import Coin from './Coin'
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
+
     modules: {
       Coin
     },

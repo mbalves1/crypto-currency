@@ -1,5 +1,6 @@
 export default function () {
   return {
-    coin: ''
+    coin: '',
+    current: 'Content'
   }
 }

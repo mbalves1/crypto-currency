@@ -1,5 +1,5 @@
 <template>
-  <!-- <q-item
+  <q-item
     clickable
     tag="a"
     target="_blank"
@@ -18,7 +18,7 @@
         {{ caption }}
       </q-item-label>
     </q-item-section>
-  </q-item> -->
+  </q-item>
   <div></div>
 </template>
 

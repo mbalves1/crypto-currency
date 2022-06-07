@@ -1,5 +1,6 @@
 <template>
-  <div style="max-width: 400px;" class="box-content">
+<div>
+  <div style="max-width: 400px; margin-top: 50px" class="box-content">
     <span class="box-content--title">
       <h4>History Crypto</h4>
       <div class="tooltip">
@@ -51,7 +52,7 @@
             :loading="loading"
             color="primary"
             @click="getHistory"
-            style="width: 150px"
+            style="width: 140px"
           >
             History
             <template v-slot:loading>
@@ -63,7 +64,7 @@
             :loading="loadingClean"
             color="primary"
             @click="cleanFilter"
-            style="width: 150px"
+            style="width: 140px"
           >
             Clean
             <template v-slot:loading>
@@ -72,16 +73,42 @@
             </template>
           </q-btn>
       </div>
-      <div v-if="crypto.currentPrice !== ''" class="q-pa-md">
-        <h6>Currency</h6>
-        <div class="border">
-          <span>{{crypto.name}} </span>
-          <span> $ {{crypto.currentPrice}}</span>
+      <transition
+        name="fade">
+        <div v-if="hasSearch" class="q-pa-md">
+          <h6>Currency</h6>
+            <div class="border">
+              <span>{{crypto.name}} </span>
+              <span> $ {{format(crypto.currentPrice)}}</span>
+            </div>
         </div>
-      </div>
+    </transition>
     </div>
     </div>
   </div>
+  <div v-if="arrayHistory.length > 0" class="box-history">
+    <div class="box-history--icon" @click="removeHistory">
+      <q-icon name=close></q-icon>
+    </div>
+    <div v-for="i, index in arrayHistory" :key="index" class="box-history--content">
+      <div>
+        <span style="display: flex; flex-direction: row; border: 1px solid white; padding: 20px">{{i}}</span>
+      </div>
+    </div>
+  </div>
+   <q-dialog v-model="confirm" persistent>
+      <q-card>
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">Would you like to save search logs?</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Cancel" color="danger" v-close-popup />
+          <q-btn flat label="Save register" color="primary" v-close-popup @click="saveRegister"/>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+</div>
 </template>
 
 <script>
@@ -102,7 +129,12 @@ export default {
         name: '',
         symbol: ''
       },
-      loadingClean: false
+      loadingClean: false,
+      hasSearch: false,
+      saveRegisterToshow: false,
+      arrayHistory: [
+      ],
+      confirm: false
     }
   },
   methods: {
@@ -110,32 +142,49 @@ export default {
       this.loading = true
       const coin = this.model
       const date = moment(this.date).format('DD-MM-YYYY') || '10-10-2000'
-      console.log('data', date)
       try {
         axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/history?date=${date}`)
           .then((data) => {
             this.crypto.currentPrice = data.data.market_data.current_price.usd
-            console.log('dta history', data.data)
+            this.hasSearch = true
             this.crypto.name = data.data.name
+            this.arrayHistory.push([data.data.name, data.data.market_data.current_price.usd, date])
             this.loading = false
           })
       } catch (err) {
         this.loading = false
       }
     },
+    removeHistory () {
+      this.arrayHistory = []
+    },
+    // saveRegister () {
+    //   this.saveRegisterToshow = true
+    // },
     cleanFilter () {
       this.loadingClean = true
       this.loading = false
       this.model = 'bitcoin'
       this.currentPrice = ''
+      this.hasSearch = false
       this.date = ''
       this.loadingClean = false
+    },
+    format (value) {
+      return new Intl.NumberFormat('en-IN').format(value)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.fade-enter-active,.fade-leave-active {
+  animation: slide-in 1s ease-in forwards;
+  transition: opacity .5s
+}
+.fade-enter,.fade-leave-active {
+  opacity: 0
+}
 h6 {
   margin: 0;
 }
@@ -152,6 +201,28 @@ h6 {
     h4 {
       margin: 12px 0 9px;
     }
+  }
+}
+
+.box-history {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  // border: 2px solid var(--bs-gray);
+  box-shadow: 0 8px 156px -50px var(--bs-gray);
+  border-radius: 4px;
+
+  &--icon {
+    margin-left: 325px;
+    margin-bottom: 5px;
+  }
+
+  &--content {
+    display: flex;
+    flex-direction: row;
   }
 }
 .border {

@@ -2,17 +2,21 @@
 const routes = [
   {
     path: '/',
+    component: () => import('pages/Home.vue')
+  },
+  {
+    path: '/view',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') }
     ]
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/Error404.vue')
+    path: '/historic',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Index.vue') }
+    ]
   }
 ]
 

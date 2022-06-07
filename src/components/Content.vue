@@ -5,21 +5,21 @@
         class="boxx--cards--card text-black"
       >
         <q-card-section>
-          <div class="text-h6">
-            <img v-if="index === 'bitcoin'" src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579" />
-            <img v-if="index === 'ethereum'" src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880" />
-            <img v-if="index === 'dacxi'" style="width: 30px" src="https://assets.coingecko.com/coins/images/4466/small/dacxi.png?1639042471" />
-            <img v-if="index === 'cosmos'" style="width: 30px" src="https://assets.coingecko.com/coins/images/1481/small/cosmos_hub.png?1555657960" />
-            <img v-if="index === 'terra-luna'" style="width: 30px" src="https://assets.coingecko.com/coins/images/22951/small/LUNA_wh_small.png?1644226405" />
+          <div class="text-h6 q-ma-sm">
+            <img class="q-mr-sm" v-if="index === 'bitcoin'" src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579" />
+            <img class="q-mr-sm" v-if="index === 'ethereum'" src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880" />
+            <img class="q-mr-sm" v-if="index === 'dacxi'" style="width: 30px" src="https://assets.coingecko.com/coins/images/4466/small/dacxi.png?1639042471" />
+            <img class="q-mr-sm" v-if="index === 'cosmos'" style="width: 30px" src="https://assets.coingecko.com/coins/images/1481/small/cosmos_hub.png?1555657960" />
+            <img class="q-mr-sm" v-if="index === 'terra-luna'" style="width: 30px" src="https://assets.coingecko.com/coins/images/22951/small/LUNA_wh_small.png?1644226405" />
             <span style="text-transform: capitalize"> {{index}}</span>
           </div>
         </q-card-section>
         <q-separator ></q-separator>
 
         <q-card-section class="q-pt-sm">
-          Price - U$ {{format(i.usd)}}<br />
-          Mkt Cap - U${{format(i.usd_market_cap)}}<br />
-          Vol in 24H - U${{format(i.usd_24h_vol)}}<br />
+          <span style="font-weight: 500">Price</span> - U$ {{format(i.usd)}}<br />
+          <span style="font-weight: 500">Mkt Cap</span> - U${{format(i.usd_market_cap)}}<br />
+          <span style="font-weight: 500">Vol in 24H</span> - U${{format(i.usd_24h_vol)}}<br />
         </q-card-section>
       </q-card>
     </div>
@@ -34,7 +34,6 @@ import { mapMutations, mapState } from 'vuex'
 export default {
   created () {
     this.getCoin()
-    this.getHistory()
     this.timer = setInterval(this.getCoin, 20000)
   },
   data () {
@@ -58,25 +57,13 @@ export default {
       setCoin: 'SET_COIN'
     }),
     format (value) {
-      console.log(new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(value))
       return new Intl.NumberFormat('en-IN').format(value)
     },
     getCoin () {
-      console.log('getcoun')
       axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cdacxi%2Ccosmos%2Cterra-luna&vs_currencies=usd&include_24hr_vol=true&include_market_cap=true')
         .then((data) => {
-          console.log('dt>>>>>>', data)
           this.coins = data.data
           this.setCoin(data.data)
-        })
-        .catch((err) => {
-          console.log('err', err)
-        })
-    },
-    getHistory () {
-      axios.get('https://api.coingecko.com/api/v3/coins/bitcoin/history?date=20-10-2020')
-        .then((data) => {
-          console.log('dta history', data)
         })
         .catch((err) => {
           console.log('err', err)
@@ -87,7 +74,6 @@ export default {
     }
   },
   beforeUnmount () {
-    console.log('chamoubefre')
     this.cancelAutoUpdate()
   }
 }

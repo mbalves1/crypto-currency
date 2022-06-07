@@ -36,5 +36,6 @@ body {
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
+  --principal:#222655;
 }
 </style>

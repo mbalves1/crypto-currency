@@ -1,3 +1,7 @@
-export function SET_COIN (state, data) {
-  state.coin = data
+export default function () {
+  return {
+    SET_COIN (state, data) {
+      state.coin = data
+    }
+  }
 }
