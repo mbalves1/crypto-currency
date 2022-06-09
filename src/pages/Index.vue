@@ -6,7 +6,7 @@
         <div class="slide" v-for="(i, index) in coins" :key="i">
           <div class="q-pa-md carousel">
             <span>{{index}}</span>
-            ${{format(i.usd)}}
+            U{{format(i.usd)}}
           </div>
         </div>
       </div>
@@ -14,8 +14,8 @@
     <q-drawer side="right" v-model="openDrawer">
       <div class="q-pa-md" style="max-width: 350px">
         <q-list separator>
-          <q-item clickable v-ripple>
-            <v-text>Dacxi</v-text>
+          <q-item clickable v-ripple style="display: flex; justify-content: center;">
+            <v-text style="font-weight: 900">DACXI</v-text>
           </q-item>
 
           <q-item clickable v-ripple @click="setCurrentContent">
@@ -99,7 +99,7 @@ export default defineComponent({
   font-weight: 700;
   padding-top: 20px;
   span {
-    color: blue;
+    color: #343a40;
   }
 }
 .container {
@@ -159,5 +159,23 @@ export default defineComponent({
   height: 100px;
   width: 100px;
   padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .slider {
+    width: 768px;
+  }
+}
+
+@media (max-width: 425px) {
+  .slider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 375px) {
+  .slider {
+    width: 100%;
+  }
 }
 </style>
