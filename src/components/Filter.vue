@@ -197,7 +197,7 @@ export default {
       this.loadingClean = false
     },
     format (value) {
-      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 14 }).format(value)
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 9 }).format(value)
     }
   }
 }
