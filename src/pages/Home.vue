@@ -15,8 +15,11 @@ export default {
 <style lang="scss" scoped>
 .container {
   background: var(--principal);
-  background-image: url('https://dacxi.com/assets/images/homepage/banner-bg.png');
+  // background-image: url('https://dacxi.com/assets/images/homepage/banner-bg.png') no-repeat !important;
+background: url('https://dacxi.com/assets/images/about/safety-and-security/banner.png');
+
   background-position: center;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;

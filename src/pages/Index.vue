@@ -70,7 +70,6 @@ export default defineComponent({
   },
   created () {
     this.getCoin()
-    console.log('get cois', this.coin)
   },
   computed: {
     ...mapState('Coin', {
