@@ -4,7 +4,7 @@
     <span class="box-content--title">
       <h4>History Crypto</h4>
       <div class="tooltip">
-        <p>Do a search on the value of the currency</p>
+        <p>First choose currency, then click calendar icon and choose date, then click clock icon and choose time</p>
         <span class="material-icons">
           info
           <q-tooltip>
@@ -25,9 +25,9 @@
             <template v-slot:prepend>
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                  <q-date v-model="date" mask="YYYY-MM-DD HH:mm">
+                  <q-date v-model="date" mask="YYYY-MM-DD HH:mm" :event-color="(date) => date[9] % 2 === 0 ? 'blue' : 'orange'" today-btn>
                     <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
+                      <q-btn v-close-popup label="Send" color="primary" flat />
                     </div>
                   </q-date>
                 </q-popup-proxy>
@@ -74,15 +74,15 @@
           </q-btn>
       </div>
       <transition
-        name="fade">
-        <div v-if="hasSearch" class="q-pa-md">
+        name="slide-fade">
+        <div v-if="hasSearch" class="banner-response--currency">
           <h6>Currency</h6>
             <div class="border">
               <span>{{crypto.name}} </span>
               <span> $ {{format(crypto.currentPrice)}}</span>
             </div>
         </div>
-    </transition>
+      </transition>
     </div>
     </div>
   </div>
@@ -96,6 +96,17 @@
       </div>
     </div>
   </div>
+  <q-dialog v-model="errorDate" persistent>
+    <q-card>
+      <q-card-section class="row items-center">
+        <span class="q-ml-sm">Please choose a valid date</span>
+      </q-card-section>
+
+      <q-card-actions align="right">
+        <q-btn flat label="Close" color="primary" v-close-popup @click="errorDate = false"/>
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
    <q-dialog v-model="confirm" persistent>
       <q-card>
         <q-card-section class="row items-center">
@@ -119,6 +130,7 @@ export default {
   data () {
     return {
       date: '',
+      today: moment(),
       model: 'bitcoin',
       options: [
         'bitcoin', 'ethereum', 'cosmos', 'terra-luna', 'dacxi'
@@ -134,7 +146,8 @@ export default {
       saveRegisterToshow: false,
       arrayHistory: [
       ],
-      confirm: false
+      confirm: false,
+      errorDate: false
     }
   },
   methods: {
@@ -142,25 +155,29 @@ export default {
       this.loading = true
       const coin = this.model
       const date = moment(this.date).format('DD-MM-YYYY') || '10-10-2000'
-      try {
-        axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/history?date=${date}`)
-          .then((data) => {
-            this.crypto.currentPrice = data.data.market_data.current_price.usd
-            this.hasSearch = true
-            this.crypto.name = data.data.name
-            this.arrayHistory.push([data.data.name, data.data.market_data.current_price.usd, date])
-            this.loading = false
-          })
-      } catch (err) {
+      const today = moment().format('DD-MM-YYYY')
+      if (date > today) {
+        this.errorDate = true
+        this.date = ''
         this.loading = false
+      } else {
+        try {
+          axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/history?date=${date}`)
+            .then((data) => {
+              this.crypto.currentPrice = data.data.market_data.current_price.usd
+              this.hasSearch = true
+              this.crypto.name = data.data.name
+              this.arrayHistory.push([data.data.name, data.data.market_data.current_price.usd, date])
+              this.loading = false
+            })
+        } catch (err) {
+          this.loading = false
+        }
       }
     },
     removeHistory () {
       this.arrayHistory = []
     },
-    // saveRegister () {
-    //   this.saveRegisterToshow = true
-    // },
     cleanFilter () {
       this.loadingClean = true
       this.loading = false
@@ -178,12 +195,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active,.fade-leave-active {
-  animation: slide-in 1s ease-in forwards;
-  transition: opacity .5s
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
 }
-.fade-enter,.fade-leave-active {
-  opacity: 0
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 h6 {
   margin: 0;
@@ -193,13 +216,14 @@ h6 {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 50px;
   // border: 2px solid var(--bs-gray);
   box-shadow: 0 8px 156px -50px var(--bs-gray);
   border-radius: 4px;
   &--title {
     h4 {
       margin: 12px 0 9px;
+      text-align: center;
     }
   }
 }
@@ -230,8 +254,16 @@ h6 {
   padding-left: 10px;
   border-radius: 2px;
   background: var(--bs-light);
-  margin: 10px;
+  margin: 10px 0;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+
+  span {
+    font-weight: 700;
+  }
 }
 .tooltip {
   display: flex;
@@ -240,5 +272,9 @@ h6 {
 }
 .banner-response {
   display: flex;
+
+  &--currency {
+    margin-top: 20px;
+  }
 }
 </style>

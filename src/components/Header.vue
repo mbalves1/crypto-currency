@@ -30,6 +30,7 @@ export default {
   align-items: center;
   height: 100px;
   background: #222655;
+  border-bottom: 4px solid var(--bs-white);
 
   div {
     display: flex;

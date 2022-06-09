@@ -4,9 +4,9 @@
     <div class="slider">
       <div class="slide-track" style="z-index: 10">
         <div class="slide" v-for="(i, index) in coins" :key="i">
-          <div class="q-pa-md">
-            {{index}}
-            {{i.usd}}
+          <div class="q-pa-md carousel">
+            <span>{{index}}</span>
+            ${{format(i.usd)}}
           </div>
         </div>
       </div>
@@ -81,9 +81,11 @@ export default defineComponent({
   methods: {
     setCurrentContent () {
       this.routeComponent = 'Content'
+      this.openDrawer = false
     },
     setCurrentFilter () {
       this.routeComponent = 'Filter'
+      this.openDrawer = false
     },
     drawer () {
       this.openDrawer = !this.openDrawer
@@ -91,7 +93,15 @@ export default defineComponent({
   }
 })
 </script>
-<style>
+<style lang="scss">
+.carousel {
+  font-size: 12px;
+  font-weight: 700;
+  padding-top: 20px;
+  span {
+    color: blue;
+  }
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -110,7 +120,7 @@ export default defineComponent({
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-250px * 5));
+    transform: translateX(calc(-100px * 5));
   }
 }
 .slider {
@@ -142,7 +152,8 @@ export default defineComponent({
 .slider .slide-track {
   animation: scroll 20s linear infinite;
   display: flex;
-  width: calc(250px * 5);
+  width: calc(100px * 5);
+  max-width: 500px;
 }
 .slider .slide {
   height: 100px;

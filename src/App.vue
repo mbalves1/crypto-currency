@@ -1,5 +1,7 @@
 <template>
-  <router-view />
+  <transition>
+    <router-view />
+  </transition>
 </template>
 <script>
 import { defineComponent } from 'vue'
@@ -11,6 +13,17 @@ export default defineComponent({
 <style>
 body {
   background: var(--bs-light-gray);
+}
+
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 /* extraido do site */
 :root {

@@ -1,4 +1,8 @@
 <template>
+<div>
+  <div class="title">
+    <q-text>Cryptocurrency Prices by Market Cap</q-text>
+  </div>
   <div class="q-pa-md boxx">
     <div v-for="(i, index) in coins" :key="i" class="boxx--cards">
       <q-card
@@ -24,6 +28,7 @@
       </q-card>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -79,12 +84,20 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 20px 0;
+  font-size: 32px;
+  font-weight: 700;
+}
 .boxx {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  margin: 0 40px;
   &--cards {
     display: grid;
     width: 290px;
@@ -93,6 +106,13 @@ export default {
 }
 
 @media (max-width: 631px) {
+  .title {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 20px 0;
+    font-size: 17px;
+    font-weight: 700;
+  }
   .boxx {
     display: flex;
     flex-direction: column;
