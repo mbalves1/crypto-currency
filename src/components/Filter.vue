@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="box">
   <div style="max-width: 400px; margin-top: 50px" class="box-content">
     <span class="box-content--title">
       <h4>History Crypto</h4>
@@ -8,7 +8,7 @@
         <span class="material-icons">
           info
           <q-tooltip>
-              Choise a crypt
+            Choise a crypt
           </q-tooltip>
         </span>
       </div>
@@ -47,7 +47,7 @@
             </template>
           </q-input>
         </div>
-        <div class="q-pt-md q-gutter-sm">
+        <div class="q-pt-md q-gutter-sm button">
           <q-btn
             :loading="loading"
             color="primary"
@@ -79,7 +79,7 @@
           <h6>Currency</h6>
             <div class="border">
               <span>{{crypto.name}} </span>
-              <span> $ {{format(crypto.currentPrice)}}</span>
+              <span> {{format(crypto.currentPrice)}}</span>
             </div>
         </div>
       </transition>
@@ -87,12 +87,21 @@
     </div>
   </div>
   <div v-if="arrayHistory.length > 0" class="box-history">
-    <div class="box-history--icon" @click="removeHistory">
-      <q-icon name=close></q-icon>
+    <div style="display: flex; align-items: center; padding-bottom: 10px">
+      <span>Logs</span>
+      <div class="box-history--icon" @click="removeHistory">
+        <q-icon name=close></q-icon>
+      </div>
     </div>
-    <div v-for="i, index in arrayHistory" :key="index" class="box-history--content">
-      <div>
-        <span style="display: flex; flex-direction: row; border: 1px solid white; padding: 20px">{{i}}</span>
+    <div class="box-history--logs">
+      <div v-for="i, index in arrayHistory" :key="index" class="box-history--content">
+        <div>
+          <span style="display: flex; flex-direction: row; padding: 10px">
+            <span style="color: blue; margin-right: 15px">{{i[0]}}</span>
+            <span style="margin-right: 15px">{{format(i[1])}}</span>
+            {{i[2]}}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -188,7 +197,7 @@ export default {
       this.loadingClean = false
     },
     format (value) {
-      return new Intl.NumberFormat('en-IN').format(value)
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(value)
     }
   }
 }
@@ -211,8 +220,15 @@ export default {
 h6 {
   margin: 0;
 }
+.box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
 .box-content {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
@@ -229,15 +245,43 @@ h6 {
 }
 
 .box-history {
-  margin-top: 20px;
+  margin-top: 50px;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
   flex-direction: column;
   padding: 20px;
   // border: 2px solid var(--bs-gray);
   box-shadow: 0 8px 156px -50px var(--bs-gray);
   border-radius: 4px;
+  max-width: 400px;
+  max-height: 500px;
+
+  &--logs {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  &--logs::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  &--logs::-webkit-scrollbar
+  {
+    width: 3px;
+    background-color: #F5F5F5;
+  }
+
+  &--logs::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: var(--bs-gray);
+  }
 
   &--icon {
     margin-left: 325px;
@@ -269,6 +313,9 @@ h6 {
   display: flex;
   flex-direction: row;
   align-items: center;
+  p {
+    width: 262px;
+  }
 }
 .banner-response {
   display: flex;
@@ -277,4 +324,18 @@ h6 {
     margin-top: 20px;
   }
 }
+
+.button {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+  }
+}
+
 </style>
