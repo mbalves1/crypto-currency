@@ -22,7 +22,7 @@ export default {
         })
     },
     format (value) {
-      return new Intl.NumberFormat('en-IN').format(value)
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(value)
     }
   }
 }
