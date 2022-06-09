@@ -1,4 +1,3 @@
-# Quasar App (testefolder)
 
 Test for front-end opportunity at Dacxi.
 
