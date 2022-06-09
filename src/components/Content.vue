@@ -9,7 +9,7 @@
         class="boxx--cards--card text-black"
       >
         <q-card-section>
-          <div class="text-h6 q-ma-sm">
+          <div class="text-h6 q-ma-sm flex">
             <img class="q-mr-sm" v-if="index === 'bitcoin'" src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579" />
             <img class="q-mr-sm" v-if="index === 'ethereum'" src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880" />
             <img class="q-mr-sm" v-if="index === 'dacxi'" style="width: 30px" src="https://assets.coingecko.com/coins/images/4466/small/dacxi.png?1639042471" />
@@ -20,10 +20,13 @@
         </q-card-section>
         <q-separator ></q-separator>
 
-        <q-card-section class="q-pt-sm">
-          <span style="font-weight: 500">Price</span> - U$ {{format(i.usd)}}<br />
-          <span style="font-weight: 500">Mkt Cap</span> - U${{format(i.usd_market_cap)}}<br />
-          <span style="font-weight: 500">Vol in 24H</span> - U${{format(i.usd_24h_vol)}}<br />
+        <q-card-section class="q-pt-lg">
+          <span style="border-left: 2px solid orange; height: 30px; padding-right: 5px"></span>
+          <span style="font-weight: 500;" class="q-mt-md">Price</span> - U{{format(i.usd)}}<br />
+          <span style="border-left: 2px solid gray; height: 30px; padding-right: 5px"></span>
+          <span style="font-weight: 500" class="q-mt-md">Mkt Cap</span> - U{{format(i.usd_market_cap)}}<br />
+          <span style="border-left: 2px solid blue; height: 30px; padding-right: 5px"></span>
+          <span style="font-weight: 500" class="q-mt-md">Vol in 24H</span> - U{{format(i.usd_24h_vol)}}<br />
         </q-card-section>
       </q-card>
     </div>
@@ -62,7 +65,7 @@ export default {
       setCoin: 'SET_COIN'
     }),
     format (value) {
-      return new Intl.NumberFormat('en-IN').format(value)
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(value)
     },
     getCoin () {
       axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cdacxi%2Ccosmos%2Cterra-luna&vs_currencies=usd&include_24hr_vol=true&include_market_cap=true')
